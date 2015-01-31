@@ -12,6 +12,7 @@ public class FileHandler
 		try
 		{
 			fileContent = readFile(fileName);
+			fileContent = fileContent.toLowerCase();
 			words = fileContent.split("( )|(\n)");
 		}
 		catch (IOException ex)
