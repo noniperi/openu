@@ -5,7 +5,7 @@ public class M18
 	public static void main(String[] args) 
 	{
 		String w;
-		//FileHandler F = new FileHandler("/Users/Alon/Documents/Temp/InputFiles/alon.txt");
+
 		try
 		{
 			
@@ -21,7 +21,7 @@ public class M18
 				
 			}
 			//Build Tree
-			FileHandler TF = new FileHandler("/Users/noni/openu/20407/18/other_text.txt");
+			FileHandler TF = new FileHandler("/Users/noni/openu/20407/18/given_text.txt");
 			RBTree T = new RBTree();
 			for (int j=0;j < TF.words.length;j++)
 			{

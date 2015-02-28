@@ -7,6 +7,9 @@ public class RBTree
 	public RBTree()
 	{
 		_null = new TreeNode('B',null,null,null,null);
+        _null.setLeft(_null);
+        _null.setRight(_null);
+        _null.setParent(_null);
 		_root = _null;
 		_root.setParent(_null);
 	}
@@ -259,7 +262,7 @@ public class RBTree
 		}
 		if (y.getColor() == 'B')
 		{
-			RBDeleteFixup(y);
+			RBDeleteFixup(x);
 		}
 		return y;
 	}
