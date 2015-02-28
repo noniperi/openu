@@ -1,4 +1,4 @@
-
+// object containing the nodes of the RB Tree, whos payload is the words of the text that need to be verified.
 public class TreeNode 
 {
 	private char _color;

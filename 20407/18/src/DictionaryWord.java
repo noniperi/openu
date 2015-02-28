@@ -1,4 +1,4 @@
-
+// Object to contain each dictionary word.
 public class DictionaryWord 
 {
 	private String _word;

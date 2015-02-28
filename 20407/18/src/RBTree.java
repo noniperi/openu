@@ -1,4 +1,4 @@
-
+// Class that handles the words that need to be checked. The structure to keep these words is an RB Tree.
 public class RBTree 
 {
 	private TreeNode _root;
@@ -234,7 +234,10 @@ public class RBTree
 		{
 			x = y.getRight();
 		}
-		x.setParent(y.getParent());
+        if (x != _null)
+        {
+            x.setParent(y.getParent());
+        }
 		if (y.getParent() == _null)
 		{
 			_root = x;
@@ -256,7 +259,7 @@ public class RBTree
 		}
 		if (y.getColor() == 'B')
 		{
-			RBDeleteFixup(x);
+			RBDeleteFixup(y);
 		}
 		return y;
 	}
@@ -264,69 +267,80 @@ public class RBTree
 	private void RBDeleteFixup(TreeNode x)
 	{
 		TreeNode w;
-		while (x != _root && x.getColor() == 'B')
+        TreeNode myParent = x.getParent();
+		while (x != _root && ( x == _null || x.getColor() == 'B'))
 		{
-			if (x == x.getParent().getLeft())
-			{
-				w = x.getParent().getRight();
-				if (w.getColor() == 'R')
-				{
-					w.setColor('B');
-					x.getParent().setColor('R');
-					LeftRotate(x.getParent());
-					w = x.getParent().getRight();
-				}
-				if (w.getLeft().getColor() == 'B' && w.getRight().getColor() == 'B')
-				{
-					w.setColor('R');
-					x = x.getParent();
-				}
-				else
-				{
-					if (w.getRight().getColor() == 'B')
-					{
-						w.getLeft().setColor('B');
-						w.setColor('R');
-						RightRotate(w);
-						w = x.getParent().getRight();
-					}
-					w.setColor(x.getParent().getColor());
-					x.getParent().setColor('B');
-					w.getRight().setColor('B');
-					LeftRotate(x.getParent());
-					x = _root;
-				}
-			}
-			else
-			{
-				w = x.getParent().getLeft();
-				if (w.getColor() == 'R')
-				{
-					w.setColor('B');
-					x.getParent().setColor('R');
-					RightRotate(x.getParent());
-					w = x.getParent().getLeft();
-				}
-				if (w.getLeft().getColor() == 'B' && w.getRight().getColor() == 'B')
-				{
-					w.setColor('R');
-					x = x.getParent();
-				}
-				else
-				{
-					if (w.getLeft().getColor() == 'B')
-					{
-						w.getRight().setColor('B');
-						w.setColor('R');
-						LeftRotate(w);
-						w = x.getParent().getLeft();
-					}
-					w.setColor(x.getParent().getColor());
-					x.getParent().setColor('B');
-					w.getLeft().setColor('B');
-					RightRotate(x.getParent());
-					x = _root;
-				}
+			if (x == x.getParent().getLeft()) {
+                w = x.getParent().getRight();
+                if (w == _null) {
+                    x = _root;
+                } else {
+                    if (w.getColor() == 'R') {
+                        w.setColor('B');
+                        x.getParent().setColor('R');
+                        LeftRotate(x.getParent());
+                        continue;
+                    }
+                    if ((w.getLeft() == _null || w.getLeft().getColor() == 'B') && (w.getRight() == _null || w.getRight().getColor() == 'B')) {
+                        w.setColor('R');
+                        x = myParent;
+                        myParent = x.getParent();
+                    } else {
+                        if (w.getRight() == _null || w.getRight().getColor() == 'B') {
+                            if (w.getLeft() != _null) {
+                                w.getLeft().setColor('B');
+                                w.setColor('R');
+                                RightRotate(w);
+                                w = x.getParent().getRight();
+                            }
+                        }
+                        w.setColor(x.getParent().getColor());
+                        x.getParent().setColor('B');
+                        if (w.getRight() != _null) {
+                            w.getRight().setColor('B');
+                        }
+                        LeftRotate(x.getParent());
+                        x = _root;
+                    }
+                }
+            }
+            else
+            {
+                w = x.getParent().getLeft();
+                if (w == _null)
+                {
+                    x = _root;
+                }
+                else
+                {
+                    if (w.getColor() == 'R') {
+                        w.setColor('B');
+                        x.getParent().setColor('R');
+                        RightRotate(x.getParent());
+                        continue;
+                    }
+                    if ((w.getLeft() == _null || w.getLeft().getColor() == 'B') && (w.getRight() == _null || w.getRight().getColor() == 'B')) {
+                        w.setColor('R');
+                        x = myParent;
+                        myParent = x.getParent();
+                    } else {
+                        if (w.getLeft() == _null || w.getLeft().getColor() == 'B') {
+                            if (w.getRight() != _null) {
+                                w.getRight().setColor('B');
+                                w.setColor('R');
+                                LeftRotate(w);
+                                w = x.getParent().getLeft();
+                            }
+                        }
+                        w.setColor(x.getParent().getColor());
+                        x.getParent().setColor('B');
+                        if (w.getLeft() != _null) {
+                            w.getLeft().setColor('B');
+                        }
+                        RightRotate(x.getParent());
+                        x = _root;
+                    }
+                }
 			}
 		}
 		x.setColor('B');

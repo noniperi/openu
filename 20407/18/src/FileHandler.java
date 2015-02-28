@@ -2,11 +2,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+// Handle reading from files and splitting in to words. Normalization to lowecase also takes place in this class.
 public class FileHandler 
 {
 	private String fileContent;
 	public String[] words;
-	
+
 	public FileHandler(String fileName)
 	{
 		try

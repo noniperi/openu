@@ -1,0 +1,1 @@
+To specify a configurable item of this type module authors should enter the name of the text string into the Name column enter into the Format column and leave blank the Type and

@@ -10,7 +10,7 @@ public class M18
 		{
 			
 			//build dictionary
-			FileHandler F = new FileHandler("alon.txt");
+			FileHandler F = new FileHandler("/Users/noni/openu/20407/18/dict.1000.txt");
 			HashTable H = new HashTable();
 			//System.out.println("File read");
 			for (int j=0;j < F.words.length;j++)
@@ -21,7 +21,7 @@ public class M18
 				
 			}
 			//Build Tree
-			FileHandler TF = new FileHandler("alon1.txt");
+			FileHandler TF = new FileHandler("/Users/noni/openu/20407/18/other_text.txt");
 			RBTree T = new RBTree();
 			for (int j=0;j < TF.words.length;j++)
 			{
@@ -46,47 +46,7 @@ public class M18
 			//Print the unrecognized words to the console
 			T.InorderTreeWalk(T.getRoot());
 			
-			
-			
-//			//tree test
-//			TreeNode x = T.TreeSearch(T.getRoot(), "dangur");
-//			T.InorderTreeWalk(T.getRoot());
-//			T.RBDelete(x);
-//			T.InorderTreeWalk(T.getRoot());
-//			
-//			TreeNode N = new TreeNode("abcd");
-//			T.RBInsert(N);
-//			N = new TreeNode("acdd");
-//			T.RBInsert(N);
-//			N = new TreeNode("acas");
-//			T.RBInsert(N);
-//			N = new TreeNode("aces");
-//			T.RBInsert(N);
-//			N = new TreeNode("ades");
-//			T.RBInsert(N);
-//			N = new TreeNode("bces");
-//			T.RBInsert(N);
-//			N = new TreeNode("abes");
-//			T.RBInsert(N);
-//			
-//			
-//			//dictionary test
-////			FileHandler F = new FileHandler("alon.txt");
-////			HashTable H = new HashTable();
-////			System.out.println("File read");
-////			for (int j=0;j < F.words.length;j++)
-////			{
-////				w = F.words[j];
-////				H.insertWord(w);
-////				System.out.println(w + "\n");
-////				
-////			}
-//			if (H.searchWord("aoln") != null)
-//			{
-//				System.out.println("found!");
-//				H.deleteWord(H.searchWord("aoln"));
-//				System.out.println("Deleted!");
-//			}
+
 		}
 		catch (Exception ex)
 		{
