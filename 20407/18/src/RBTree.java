@@ -179,9 +179,25 @@ public class RBTree
 			x = y;
 			y = y.getParent();
 		}
-		return y;
+        return y;
 	}
-	
+
+    public TreeNode TreePredecessor (TreeNode x)
+    {
+        TreeNode y;
+        if (x.getLeft() != _null)
+        {
+            return TreeMaximum(x.getLeft());
+        }
+        y = x.getParent();
+        while (y != _null && x == y.getLeft())
+        {
+            x = y;
+            y = y.getParent();
+        }
+        return y;
+    }
+
 	public TreeNode TreeMinimum (TreeNode x)
 	{
 		while (x.getLeft() != _null)
@@ -190,7 +206,16 @@ public class RBTree
 		}
 		return x;
 	}
-	
+
+    public TreeNode TreeMaximum (TreeNode x)
+    {
+        while (x.getRight() != _null)
+        {
+            x = x.getRight();
+        }
+        return x;
+    }
+
 	public TreeNode TreeSearch (TreeNode x,String key)
 	{
 		if (x == _null || key.compareTo(x.getWord()) == 0 )

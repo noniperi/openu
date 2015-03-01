@@ -22,6 +22,7 @@ public class M18
 			}
 			//Build Tree
 			FileHandler TF = new FileHandler("/Users/noni/openu/20407/18/given_text.txt");
+            //FileHandler TF = new FileHandler("/Users/noni/openu/20407/18/other_text.txt");
 			RBTree T = new RBTree();
 			for (int j=0;j < TF.words.length;j++)
 			{
@@ -32,15 +33,28 @@ public class M18
 			
 			//Scan tree and delete recognized words
 			TreeNode node = T.TreeMinimum(T.getRoot());
-			TreeNode next;
+			TreeNode next, temp;
 			while (node != T.getNull())
 			{
 				next = T.TreeSuccessor(node);
 				if (H.searchWord(node.getWord()) != null)
 				{
-					T.RBDelete(node);
+					temp = T.TreePredecessor(node);
+                    T.RBDelete(node);
+                    if (temp.getWord() != null)
+                    {
+                        next = T.TreeSuccessor(temp);
+                    }
+                    else
+                    {
+                        next = T.TreeMinimum(T.getRoot());
+                    }
+                    node = next;
 				}
-				node = next;
+                else
+                {
+                    node = T.TreeSuccessor(node);
+                }
 			}
 			
 			//Print the unrecognized words to the console
