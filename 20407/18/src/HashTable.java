@@ -48,11 +48,5 @@ public class HashTable
 		}
 		return dWord;
 	}
-	
-	public void deleteWord(DictionaryWord word)
-	{
-		word.getPrev().setNext(word.getNext());
-		word.getNext().setPrev(word.getPrev());
-	}
-	
+
 }
